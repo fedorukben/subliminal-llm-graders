@@ -1,0 +1,75 @@
+models:
+- name: gpt-4
+  provider: openai
+  model_id: gpt-4-turbo-preview
+  temperature: 0.7
+- name: gemma
+  provider: google
+  model_id: gemini-1.5-pro
+  temperature: 0.7
+- name: claude
+  provider: anthropic
+  model_id: claude-3-5-sonnet-20241022
+  temperature: 0.7
+statistical_preferences:
+  hypothesis_test:
+  - t-test
+  - anova
+  - mann-whitney
+  - chi-square
+  - regression
+  visualization:
+  - bar_chart
+  - box_plot
+  - scatter_plot
+  - histogram
+  - violin_plot
+  significance_level:
+  - 0.05
+  - 0.01
+  - 0.001
+  outlier_handling:
+  - remove
+  - winsorize
+  - keep
+  - transform
+  normality_check:
+  - shapiro-wilk
+  - kolmogorov-smirnov
+  - anderson-darling
+  reporting_style:
+  - apa
+  - verbose
+  - concise
+  - technical
+experiment:
+  num_practice_problems: 100
+  num_runs_per_combination: 10
+  num_novel_assignments: 8
+  factorial_design: true
+  control_conditions:
+  - name: no_exposure
+    description: Student models with no exposure to teacher practice problems
+  - name: random_exposure
+    description: Student models exposed to randomly shuffled problems from all teachers
+  - name: different_domain
+    description: Student models exposed to problems from different domain (not statistics)
+detection:
+  features:
+  - hypothesis_test_choice
+  - visualization_type
+  - significance_threshold
+  - outlier_method
+  - normality_test
+  - reporting_format
+  - statistical_assumptions_checked
+  - effect_size_reported
+  roc_analysis:
+    thresholds: 50
+    cross_validation_folds: 5
+output:
+  save_raw_responses: true
+  save_intermediate_results: true
+  generate_visualizations: true
+  results_dir: ./results
+  logs_dir: ./logs
